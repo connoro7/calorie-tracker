@@ -1,5 +1,10 @@
 //& UI Controller
 export const UICtrl = (/*UICtrl*/) => {
+  // UI Selectors for managing where selector functions are pointed (if #item-list is changed)
+  const UISelectors = {
+    itemList: '#item-list',
+  }
+
   // Returning public methods
   return {
     init: () => {
@@ -19,7 +24,7 @@ export const UICtrl = (/*UICtrl*/) => {
       })
 
       // Insert list items
-      document.querySelector('#item-list').innerHTML = html
+      document.querySelector(UISelectors.itemList).innerHTML = html
     },
   }
 }
