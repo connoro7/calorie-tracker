@@ -10,6 +10,34 @@ const App = (function (ItemCtrl, UICtrl, StorageCtrl) {
   //   console.log('StorageCtrl.init: ', StorageCtrl.init())
   //   window.test = { ItemCtrl, UICtrl }
 
+  // Load Event Listeners
+  const loadEventListerners = () => {
+    // Get UI Selectors
+    const UISelectors = UICtrl.getSelectors()
+    // Add Item Event
+    document.querySelector(UISelectors.addBtn).addEventListener('click', itemAddSubmit)
+  }
+
+  // Add Item Submit
+  const itemAddSubmit = (e) => {
+    // Test: Make sure "Add Meal" button is triggering properl
+    // console.log('Add')
+    const input = UICtrl.getItemInput()
+
+    // Test: Make sure "Meal" and "Calories" input fields are being stored correctly when "Add Meal" button is clicked
+    // console.log(input)
+
+    if (input.name !== '' && input.calories !== '') {
+      console.log('Test passed: Meal name and calories inputs are not null-ish')
+      // Add item
+      const newItem = ItemCtrl.addItem(input.name, input.calories)
+    } else {
+      console.log('Test failed: Meal name and calories are null-ish')
+    }
+
+    e.preventDefault()
+  }
+
   // Returning public methods
   return {
     init: function () {
@@ -22,6 +50,9 @@ const App = (function (ItemCtrl, UICtrl, StorageCtrl) {
 
       // Populate list with items
       UICtrl.populateItemList(items)
+
+      // Load event listeners
+      loadEventListerners()
     },
   }
 })(ItemCtrl(), UICtrl(), StorageCtrl())

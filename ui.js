@@ -1,8 +1,11 @@
 //& UI Controller
 export const UICtrl = (/*UICtrl*/) => {
-  // UI Selectors for managing where selector functions are pointed (if #item-list is changed)
+  // UI Selectors for managing where selector functions are pointed
   const UISelectors = {
     itemList: '#item-list',
+    addBtn: '.add-btn',
+    itemNameInput: '#item-name',
+    itemCaloriesInput: '#item-calories',
   }
 
   // Returning public methods
@@ -25,6 +28,17 @@ export const UICtrl = (/*UICtrl*/) => {
 
       // Insert list items
       document.querySelector(UISelectors.itemList).innerHTML = html
+    },
+
+    getItemInput: () => {
+      return {
+        name: document.querySelector(UISelectors.itemNameInput).value,
+        calories: document.querySelector(UISelectors.itemCaloriesInput).value,
+      }
+    },
+
+    getSelectors: () => {
+      return UISelectors
     },
   }
 }

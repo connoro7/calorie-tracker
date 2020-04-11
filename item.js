@@ -22,6 +22,28 @@ export const ItemCtrl = (/*ItemCtrl*/) => {
     getItems: () => {
       return data.items
     },
+    addItem: (name, calories) => {
+      // Test: Checks to see if meal name and calorie input fields are reaching the ItemCtrl.addItem() method
+      //   console.log(name, calories)
+      let ID
+      // Create ID
+      if (data.items.length > 0) {
+        ID = data.items[data.items.length - 1].id + 1
+      } else {
+        ID = 0
+      }
+
+      // Convert calories input field from string to number
+      calories = parseInt(calories)
+
+      // Create new item
+      let newItem = new Item(ID, name, calories)
+
+      // Add object created by newItem to array
+      data.items.push(newItem)
+
+      return newItem
+    },
     logData: () => {
       console.log('>> ITEM CONTROLLER: ')
       return data
