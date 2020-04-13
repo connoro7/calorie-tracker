@@ -6,6 +6,7 @@ export const UICtrl = (/*UICtrl*/) => {
     addBtn: '.add-btn',
     itemNameInput: '#item-name',
     itemCaloriesInput: '#item-calories',
+    totalCalories: '.total-calories',
   }
 
   // Returning public methods
@@ -65,6 +66,9 @@ export const UICtrl = (/*UICtrl*/) => {
     // Hide Item List if List is Empty (to remove floating line at bottom of new UI instance)
     hideList: () => {
       document.querySelector(UISelectors.itemList).style.display = 'none'
+    },
+    showTotalCalories: (totalCalories) => {
+      document.querySelector(UISelectors.totalCalories).textContent = totalCalories
     },
 
     getSelectors: () => {

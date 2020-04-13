@@ -36,6 +36,12 @@ const App = (function (ItemCtrl, UICtrl, StorageCtrl) {
       // Add item to UI list
       UICtrl.addListItem(newItem)
 
+      // Get total calories
+      const totalCalories = ItemCtrl.getTotalCalories()
+
+      // Add total calories to UI
+      UICtrl.showTotalCalories(totalCalories)
+
       // Clear fields after form submit
       UICtrl.clearInput()
     } else {
@@ -62,6 +68,12 @@ const App = (function (ItemCtrl, UICtrl, StorageCtrl) {
         // Populate list with items
         UICtrl.populateItemList(items)
       }
+
+      // Fetch total calories from local storage
+      // Get total calories
+      const totalCalories = ItemCtrl.getTotalCalories()
+      // Add total calories to UI
+      UICtrl.showTotalCalories(totalCalories)
 
       // Load event listeners
       loadEventListerners()

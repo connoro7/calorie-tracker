@@ -50,6 +50,19 @@ export const ItemCtrl = (/*ItemCtrl*/) => {
       return newItem
     },
 
+    getTotalCalories: () => {
+      let total = 0
+
+      // Loop through items and add calories to total count
+      data.items.forEach((item) => {
+        total += item.calories
+      })
+      // Set total calories in data structure
+      data.totalCalories = total
+
+      return data.totalCalories
+    },
+
     logData: () => {
       return data
     },
