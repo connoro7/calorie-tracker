@@ -10,9 +10,10 @@ export const ItemCtrl = (/*ItemCtrl*/) => {
   // Data Structure / State
   const data = {
     items: [
-      { id: 0, name: 'Steak Dinner', calories: 1200 },
-      { id: 1, name: 'Cookies', calories: 400 },
-      { id: 2, name: 'Eggs', calories: 300 },
+      // Test items for initial UI development
+      //   { id: 0, name: 'Steak Dinner', calories: 1200 },
+      //   { id: 1, name: 'Cookies', calories: 400 },
+      //   { id: 2, name: 'Eggs', calories: 300 },
     ],
     currentItem: null,
     totalCalories: 0,

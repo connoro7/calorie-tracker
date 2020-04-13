@@ -55,8 +55,13 @@ const App = (function (ItemCtrl, UICtrl, StorageCtrl) {
       const items = ItemCtrl.getItems()
       //   console.log(items)
 
-      // Populate list with items
-      UICtrl.populateItemList(items)
+      // Check if any items already exist
+      if (items.length === 0) {
+        UICtrl.hideList()
+      } else {
+        // Populate list with items
+        UICtrl.populateItemList(items)
+      }
 
       // Load event listeners
       loadEventListerners()
