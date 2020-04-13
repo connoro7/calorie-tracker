@@ -32,7 +32,12 @@ const App = (function (ItemCtrl, UICtrl, StorageCtrl) {
       // Add item
       const newItem = ItemCtrl.addItem(input.name, input.calories)
       console.log('ItemCtrl.logData(): ', ItemCtrl.logData())
+
+      // Add item to UI list
       UICtrl.addListItem(newItem)
+
+      // Clear fields after form submit
+      UICtrl.clearInput()
     } else {
       console.log('Test failed: Meal name and calories are null-ish')
     }
