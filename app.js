@@ -5,7 +5,7 @@ import { StorageCtrl } from './storage.js'
 //& App Controller
 const App = (function (ItemCtrl, UICtrl, StorageCtrl) {
   // Test: ensure JS modules are returning outputs to App.js correctly
-  //   console.log('ItemCtrl.logData: ', ItemCtrl.logData())
+  //   console.log('ItemCtrl.init: ', ItemCtrl.init())
   //   console.log('UICtrl.init: ', UICtrl.init())
   //   console.log('StorageCtrl.init: ', StorageCtrl.init())
   //   window.test = { ItemCtrl, UICtrl }
@@ -31,6 +31,8 @@ const App = (function (ItemCtrl, UICtrl, StorageCtrl) {
       console.log('Test passed: Meal name and calories inputs are not null-ish')
       // Add item
       const newItem = ItemCtrl.addItem(input.name, input.calories)
+      console.log('ItemCtrl.logData(): ', ItemCtrl.logData())
+      UICtrl.addListItem(newItem)
     } else {
       console.log('Test failed: Meal name and calories are null-ish')
     }

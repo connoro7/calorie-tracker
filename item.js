@@ -19,6 +19,10 @@ export const ItemCtrl = (/*ItemCtrl*/) => {
   }
   // Returning public methods
   return {
+    init: () => {
+      console.log('>> ITEM CONTROLLER: ')
+    },
+
     getItems: () => {
       return data.items
     },
@@ -44,8 +48,8 @@ export const ItemCtrl = (/*ItemCtrl*/) => {
 
       return newItem
     },
+
     logData: () => {
-      console.log('>> ITEM CONTROLLER: ')
       return data
     },
   }

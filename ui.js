@@ -1,6 +1,6 @@
 //& UI Controller
 export const UICtrl = (/*UICtrl*/) => {
-  // UI Selectors for managing where selector functions are pointed
+  // UI Selectors: for managing where selector functions are pointed
   const UISelectors = {
     itemList: '#item-list',
     addBtn: '.add-btn',
@@ -35,6 +35,23 @@ export const UICtrl = (/*UICtrl*/) => {
         name: document.querySelector(UISelectors.itemNameInput).value,
         calories: document.querySelector(UISelectors.itemCaloriesInput).value,
       }
+    },
+
+    addListItem: function (item) {
+      // Create <li> element
+      const li = document.createElement('li')
+      //Add .class and #ID
+      li.className = 'collection-item'
+      li.id = `item-${item.id}`
+
+      // Add HTML
+      li.innerHTML = `<strong>${item.name}: </strong> <em>${item.calories}</em>
+        <a href="#" class="secondary-content">
+          <i class="edit-item fa fa-pencil"></i>
+        </a>`
+
+      // Insert item
+      document.querySelector(UISelectors.itemList).insertAdjacentElement('beforeend', li)
     },
 
     getSelectors: () => {
