@@ -73,27 +73,32 @@ export const UICtrl = function (ItemCtrl) {
       document.querySelector(UISelectors.itemCaloriesInput).value = ''
     },
     addItemToForm: () => {
-      let currItem = () => {
-        // console.log('UI TEST 1: LogData: ', ItemCtrl.logData())
-        // console.log('UI TEST 2: getCurrentItem: ', ItemCtrl.getCurrentItem())
-        // let foo = ItemCtrl.logData().currentItem
-        // console.log('UI TEST 3: ItemCtrl.logData.currentItem: ', foo)
-        // console.log('UI TEST 3.5: window.test: ', window.test)
+      // #region Tests for addItemtoForm
 
-        // console.log('UI TEST 4: PATH TO CURRENTITEM? ', ItemCtrl.logData().currentItem)
-
-        // sets currItem equal to the return of the enclosed arrow function: ItemCtrl.getCurrentItem
-        return ItemCtrl.getCurrentItem()
-      }
+      //& VARIETY OF TESTS TO OBSERVE FLOW OF DATA BETWEEN ItemCtrl & UICtrl
+      // let currItem = () => {
+      // console.log('UI TEST 1: LogData: ', ItemCtrl.logData())
+      // console.log('UI TEST 2: getCurrentItem: ', ItemCtrl.getCurrentItem())
+      // let foo = ItemCtrl.logData().currentItem
+      // console.log('UI TEST 3: ItemCtrl.logData.currentItem: ', foo)
+      // console.log('UI TEST 3.5: window.test: ', window.test)
+      // console.log('UI TEST 4: PATH TO CURRENTITEM? ', ItemCtrl.logData().currentItem)
+      // sets currItem equal to the return of the enclosed arrow function: ItemCtrl.getCurrentItem
+      //   return ItemCtrl.getCurrentItem()
+      // }
+      // #endregion
 
       //& Test: Checks what currItem has been set to
       // console.log('Test.UI.addItemToForm.currItem(), Is Current Item Set? ', currItem())
 
       document.querySelector(UISelectors.itemNameInput).value = ItemCtrl.getCurrentItem().name
-      console.log('getCurrentItem().calories', ItemCtrl.getCurrentItem().name)
-
+      //& Test: Logs content of getCurrentItem.name to make sure the correct item is being edited
+      // console.log('getCurrentItem().calories', ItemCtrl.getCurrentItem().name)
       document.querySelector(UISelectors.itemCaloriesInput).value = ItemCtrl.getCurrentItem().calories
-      console.log('getCurrentItem().calories', ItemCtrl.getCurrentItem().calories)
+      //& Test: Logs content of getCurrentItem.calories to make sure the correct item is being edited
+      // console.log('getCurrentItem().calories', ItemCtrl.getCurrentItem().calories)
+
+      UICtrl().showEditState()
     },
 
     // Hide Item List if List is Empty (to remove floating line at bottom of new UI instance)
@@ -108,7 +113,7 @@ export const UICtrl = function (ItemCtrl) {
 
     // Clear Edit State
     clearEditState: () => {
-      UICtrl().clearInput
+      UICtrl().clearInput()
       //   document.querySelector(UISelectors.itemNameInput).value = ''
       //   document.querySelector(UISelectors.itemCaloriesInput).value = ''
       document.querySelector(UISelectors.updateBtn).style.display = 'none'
