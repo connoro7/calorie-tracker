@@ -1,5 +1,9 @@
+let controllerCount = 0
+
 //& Item Controller
+
 export const ItemCtrl = (/*ItemCtrl*/) => {
+  const controllerId = ++controllerCount
   // Item Constructor
   const Item = function (id, name, calories) {
     this.id = id
@@ -10,7 +14,7 @@ export const ItemCtrl = (/*ItemCtrl*/) => {
   // Data Structure / State
   const data = {
     items: [
-      // Test items for initial UI development
+      //& Test items (for initial UI development)
       //   { id: 0, name: 'Steak Dinner', calories: 1200 },
       //   { id: 1, name: 'Cookies', calories: 400 },
       //   { id: 2, name: 'Eggs', calories: 300 },
@@ -28,8 +32,8 @@ export const ItemCtrl = (/*ItemCtrl*/) => {
       return data.items
     },
     addItem: (name, calories) => {
-      // Test: Checks to see if meal name and calorie input fields are reaching the ItemCtrl.addItem() method
-      //   console.log(name, calories)
+      //& Test: Checks to see if meal name and calorie input fields are reaching the ItemCtrl.addItem() method
+      //   console.log('Test: Item.addItem: ', name, calories)
       let ID
       // Create ID
       if (data.items.length > 0) {
@@ -50,6 +54,35 @@ export const ItemCtrl = (/*ItemCtrl*/) => {
       return newItem
     },
 
+    getItemById: (id) => {
+      let found = null
+      // Loop through list items
+      data.items.forEach((item) => {
+        if (item.id === id) {
+          found = item
+        }
+      })
+      return found
+    },
+
+    // Moved item that we want to edit into data.currentItem state
+    setCurrentItem: function (item) {
+      data.currentItem = item
+      //& Test: Checks what `item` is assigned as
+      //   console.log('TEST.Item.setCurrentItem.item: ', item)
+      //& Test: Checks if `item` has been assigned to data.currentItem correctly
+      //   console.log('ITEM TEST 1: Item.setCurrentItem, data.currentItem: ', data.currentItem, { data, controllerId })
+      //   return data.currentItem
+    },
+
+    // Move SetCurrentItem to window
+    getCurrentItem: () => {
+      //& Test: Returns data.currentItem to windowr
+      //   console.log('ITEM TEST 2: ITEM.getCurrentItem, data.currentItem: ', data.currentItem, { data, controllerId })
+      return data.currentItem
+    },
+
+    // Sums up calories of existing list items to create total calorie count
     getTotalCalories: () => {
       let total = 0
 
