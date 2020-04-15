@@ -15,6 +15,7 @@ export const UICtrl = function (ItemCtrl) {
     updateBtn: '.update-btn',
     deleteBtn: '.delete-btn',
     backBtn: '.back-btn',
+    clearBtn: '.clear-btn',
     itemNameInput: '#item-name',
     itemCaloriesInput: '#item-calories',
     totalCalories: '.total-calories',
@@ -68,6 +69,7 @@ export const UICtrl = function (ItemCtrl) {
       document.querySelector(UISelectors.itemList).insertAdjacentElement('beforeend', li)
     },
 
+    // Updates a list item when user clicks the "Update Meal" button
     updateListItem: (item) => {
       let listItems = document.querySelectorAll(UISelectors.listItems)
 
@@ -84,6 +86,12 @@ export const UICtrl = function (ItemCtrl) {
           </a>`
         }
       })
+    },
+
+    deleteListItem: (id) => {
+      const itemID = `#item-${id}`
+      const item = document.querySelector(itemID)
+      item.remove()
     },
 
     // Clear form submission fields
@@ -118,6 +126,17 @@ export const UICtrl = function (ItemCtrl) {
       // console.log('getCurrentItem().calories', ItemCtrl.getCurrentItem().calories)
 
       UICtrl().showEditState()
+    },
+
+    removeItems: () => {
+      let listItems = document.querySelectorAll(UISelectors.listItems)
+
+      // Convert Node list into an array
+      listItems = Array.from(listItems)
+
+      listItems.forEach((item) => {
+        item.remove()
+      })
     },
 
     // Hide Item List if List is Empty (to remove floating line at bottom of new UI instance)

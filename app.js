@@ -13,7 +13,7 @@ const App = (function (ItemCtrl, UICtrl, StorageCtrl) {
   //   console.log('Test.App.UICtrl.init: ', UICtrl.init())
   //   console.log('Test.App.StorageCtrl.init: ', StorageCtrl.init())
   //& Test: Use window.test in Chrome console to see if ItemCtrl and UICtrl are being fed to the DOM correctly
-  //   window.test = { ItemCtrl, UICtrl }
+  window.test = { ItemCtrl, UICtrl }
   //   window.test = ItemCtrl.getCurrentItem()
 
   // Load Event Listeners
@@ -38,6 +38,15 @@ const App = (function (ItemCtrl, UICtrl, StorageCtrl) {
 
     // Update item event
     document.querySelector(UISelectors.updateBtn).addEventListener('click', itemUpdateSubmit)
+
+    // Back button event
+    document.querySelector(UISelectors.backBtn).addEventListener('click', UICtrl.clearEditState)
+
+    // Delete button event
+    document.querySelector(UISelectors.deleteBtn).addEventListener('click', itemDeleteSubmit)
+
+    // Clear button event
+    document.querySelector(UISelectors.clearBtn).addEventListener('click', clearAllItemsClick)
   }
 
   // Add Item Submit
@@ -115,7 +124,7 @@ const App = (function (ItemCtrl, UICtrl, StorageCtrl) {
     e.preventDefault()
   }
 
-  // Update Item Submit
+  // Update button event
   const itemUpdateSubmit = (e) => {
     //& Test: checks for correct event listening on the "Update Meal" button
     // console.log('App Test: itemUpdateSubmit triggered')
@@ -137,6 +146,47 @@ const App = (function (ItemCtrl, UICtrl, StorageCtrl) {
     UICtrl.clearEditState()
 
     e.preventDefault()
+  }
+
+  // Delete button event
+  const itemDeleteSubmit = (e) => {
+    //& Test: checks for correct event listening on the "Delete Meal" button
+    // console.log('App Test: itemDeleteSubmit triggered')
+
+    // Get current item
+    const currentItem = ItemCtrl.getCurrentItem()
+
+    // Delete from data structure
+    ItemCtrl.deleteItem(currentItem.id)
+
+    // Delete from UI
+    UICtrl.deleteListItem(currentItem.id)
+
+    // Get total calories
+    const totalCalories = ItemCtrl.getTotalCalories()
+    // Add total calories to UI
+    UICtrl.showTotalCalories(totalCalories)
+
+    UICtrl.clearEditState()
+
+    e.preventDefault()
+  }
+
+  // Clear All Items button event
+  const clearAllItemsClick = () => {
+    // Delete all items from data structure
+    ItemCtrl.clearAllItems()
+
+    // Get total calories
+    const totalCalories = ItemCtrl.getTotalCalories()
+    // Add total calories to UI
+    UICtrl.showTotalCalories(totalCalories)
+
+    // Remove from UI
+    UICtrl.removeItems()
+
+    // Hide <ul> List (because it will be empty after this event)
+    UICtrl.hideList()
   }
 
   // Returning public methods

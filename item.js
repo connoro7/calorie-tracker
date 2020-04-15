@@ -81,6 +81,23 @@ export const ItemCtrl = (/*ItemCtrl*/) => {
       return found
     },
 
+    deleteItem: (id) => {
+      // Get IDs
+      const IDs = data.items.map((item) => {
+        return item.id
+      })
+
+      // Get index
+      const index = IDs.indexOf(id)
+
+      // Remove item
+      data.items.splice('index, 1')
+    },
+
+    clearAllItems: () => {
+      data.items = []
+    },
+
     // Moved item that we want to edit into data.currentItem state
     setCurrentItem: function (item) {
       data.currentItem = item
