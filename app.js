@@ -4,7 +4,7 @@ import { StorageCtrl } from './storage.js'
 
 const itemCtrl = ItemCtrl()
 const uiCtrl = UICtrl(itemCtrl)
-const storageCtrl = StorageCtrl()
+const storageCtrl = StorageCtrl
 
 //& App Controller
 const App = (function (ItemCtrl, UICtrl, StorageCtrl) {
@@ -76,6 +76,9 @@ const App = (function (ItemCtrl, UICtrl, StorageCtrl) {
 
       // Add total calories to UI
       UICtrl.showTotalCalories(totalCalories)
+
+      // Store in localStorage
+      StorageCtrl.storeItem(newItem)
 
       // Clear fields after form submit
       UICtrl.clearInput()
