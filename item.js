@@ -65,6 +65,22 @@ export const ItemCtrl = (/*ItemCtrl*/) => {
       return found
     },
 
+    updateItem: (name, calories) => {
+      // Parse calories to integer
+      calories = parseInt(calories)
+      // Updates item in data structure only-- not UI!
+
+      let found = null
+      data.items.forEach((item) => {
+        if (item.id === data.currentItem.id) {
+          item.name = name
+          item.calories = calories
+          found = item
+        }
+      })
+      return found
+    },
+
     // Moved item that we want to edit into data.currentItem state
     setCurrentItem: function (item) {
       data.currentItem = item

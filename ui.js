@@ -10,6 +10,7 @@ export const UICtrl = function (ItemCtrl) {
   // UI Selectors: for managing where selector functions are pointed
   const UISelectors = {
     itemList: '#item-list',
+    listItems: '#item-list li',
     addBtn: '.add-btn',
     updateBtn: '.update-btn',
     deleteBtn: '.delete-btn',
@@ -65,6 +66,24 @@ export const UICtrl = function (ItemCtrl) {
 
       // Insert item
       document.querySelector(UISelectors.itemList).insertAdjacentElement('beforeend', li)
+    },
+
+    updateListItem: (item) => {
+      let listItems = document.querySelectorAll(UISelectors.listItems)
+
+      // Turn Node list into an array:
+      listItems = Array.from(listItems)
+
+      listItems.forEach((listItem) => {
+        const itemID = listItem.getAttribute('id')
+
+        if (itemID === `item-${item.id}`) {
+          document.querySelector(`#${itemID}`).innerHTML = `<strong>${item.name}: </strong> <em>${item.calories}</em>
+          <a href="#" class="secondary-content">
+            <i class="edit-item fa fa-pencil"></i>
+          </a>`
+        }
+      })
     },
 
     // Clear form submission fields
